@@ -27,7 +27,7 @@ const CartTotals = () => {
             size="small"
             icon={<MinusCircleOutlined />}
           />    
-          <span><b>2</b></span>
+          <span className="font-bold">2</span>
           <Button
             className="w-full flex items-center justify-center !rounded-full"
             type="primary"
