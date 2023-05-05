@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import Categories from "./components/Categories/Categories";
+import Products from "./components/Products/Products";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Categories />
         </div>
         <div className="products flex-[8]">
-          <div>products</div>
+          <Products/>
         </div>
         <div className="cart">
           <div>cart totals</div>
