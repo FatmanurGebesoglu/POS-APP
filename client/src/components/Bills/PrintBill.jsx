@@ -108,13 +108,13 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
                     <span className="font-medium">Elma</span>
                   </td>
                   <td className="py-4 text-center">
-                    <span>15.00₺</span>
+                    <span>16.00₺</span>
                   </td>
                   <td className="py-4 text-center">
                     <span>1</span>
                   </td>
                   <td className="py-4 text-end">
-                    <span>15.00₺</span>
+                    <span>16.00₺</span>
                   </td>
                 </tr>
               </tbody>
