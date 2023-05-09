@@ -53,7 +53,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
                 </div>
                 <div>
                   <p className="font-bold text-slate-700 mt-2">Vade:</p>
-                  <p>2024-05-09</p>
+                  <p>2024-06-09</p>
                 </div>
               </div>
             </div>
