@@ -37,7 +37,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
               <div className="text-md text-slate-500">
                 <div>
                   <p className="font-bold text-slate-700">Fatura numarası:</p>
-                  <p>00026</p>
+                  <p>00022</p>
                 </div>
                 <div>
                   <p className="font-bold text-slate-700 mt-2">
