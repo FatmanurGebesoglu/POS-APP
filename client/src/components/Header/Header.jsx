@@ -53,7 +53,7 @@ const Header = () => {
             <span className="md:text-xs text-[12px]">Faturalar</span>
           </Link>
           <Link
-            to={"/"}
+            to={"/customers"}
             className="flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <UserOutlined className="md:text-2xl text-xl" />
