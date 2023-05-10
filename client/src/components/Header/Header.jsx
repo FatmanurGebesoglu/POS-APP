@@ -60,7 +60,7 @@ const Header = () => {
             <span className="md:text-xs text-[12px]">Müşteriler</span>
           </Link>
           <Link
-            to={"/"}
+            to={"/statistic"}
             className="flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <BarChartOutlined className="md:text-2xl text-xl" />
