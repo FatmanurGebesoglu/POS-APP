@@ -2,28 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800&family=Dancing+Script:wght@400;700&family=Electrolize&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
 
 body {
   margin: 0;
-  font-family: 'Electrolize', sans-serif;
+  font-family: "Electrolize", sans-serif;
+  @apply bg-gray-50;
 }
 
 .ant-btn-primary {
-  background-color: #1d4ed8;
-  color: #fff;
+  background-color: #1677ff;
 }
 
+.menu-link .anticon{
+  display: flex;
+  justify-content: center;
+}
 
 @media (min-width: 768px) {
-  body{
+  body {
     overflow: hidden;
   }
+
   .categories::-webkit-scrollbar {
     display: none;
   }
-  .categories {
-    overflow-y: scroll;
-    height: 100vh;
+
+  .products::-webkit-scrollbar {
+    display: none;
   }
 }
