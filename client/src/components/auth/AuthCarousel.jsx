@@ -9,3 +9,7 @@ const AuthCarousel = ({ img, title, desc }) => {
   };
   
   export default AuthCarousel;
+
+
+
+  
