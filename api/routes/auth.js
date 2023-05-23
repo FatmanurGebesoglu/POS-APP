@@ -3,16 +3,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
-//! Get all users
-router.get("/get-all", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(400).json(error);
-  }
-});
-
 //! Add a user (register)
 router.post("/register", async (req, res) => {
   try {
@@ -31,5 +21,26 @@ router.post("/register", async (req, res) => {
   }
 });
 
+
+//! login
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    !user && res.status(404).send({ error: "User not found!" });
+
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+
+    if (!validPassword) {
+      res.status(403).json("Invalid password!");
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
 
 module.exports = router;
