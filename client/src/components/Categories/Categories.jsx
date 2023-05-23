@@ -51,7 +51,7 @@ const Categories = () => {
         <span>Meyve</span>
       </li>
       <li
-        className="category-item !bg-purple-800 hover:opacity-90"
+        className="category-item !bg-rose-700 hover:opacity-90"
         onClick={() => setIsAddModalOpen(true)}
       >
         <PlusOutlined className="md:text-2xl" />
