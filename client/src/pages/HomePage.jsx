@@ -1,24 +1,27 @@
-import React from "react";
 import { useEffect, useState } from "react";
-import Header from "../components/Header/Header";
-import Categories from "../components/Categories/Categories";
-import Products from "../components/Products/Products";
 import CartTotals from "../components/Cart/CartTotals";
+import Categories from "../components/Categories/Categories";
+import Header from "../components/Header/Header";
+import Products from "../components/Products/Products";
+
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
     const getCategories = async () => {
       try {
         const res = await fetch("http://localhost:5000/api/categories/get-all");
         const data = await res.json();
-        setCategories(data);
+        data &&
+          setCategories(
+            data.map((item) => {
+              return { ...item, value: item.title };
+            })
+          );
       } catch (error) {
         console.log(error);
       }
     };
-
     getCategories();
   }, []);
   return (
@@ -29,14 +32,13 @@ const HomePage = () => {
           <Categories categories={categories} setCategories={setCategories} />
         </div>
         <div className="products flex-[8] max-h-[calc(100vh_-_112px)] overflow-y-auto pb-10">
-          <Products />
+          <Products categories={categories} />
         </div>
-        <div className="cart-wrapper min-w-[300px] md:-mr-[24px] md:-mt-[24px] border ">
+        <div className="cart-wrapper min-w-[300px] md:-mr-[24px] md:-mt-[24px] border">
           <CartTotals />
         </div>
       </div>
     </>
   );
 };
-
 export default HomePage;
