@@ -25,7 +25,10 @@ const CartTotals = () => {
                     src={item.img}
                     alt=""
                     className="w-16 h-16 object-cover cursor-pointer"
-                    onClick={() => dispatch(deleteCart(item))}
+                    onClick={() => {
+                      dispatch(deleteCart(item));
+                      message.success("Ürün Silindi");
+                    }}
                   />
                   <div className="flex flex-col ml-2">
                     <b>{item.title}</b>
@@ -42,7 +45,9 @@ const CartTotals = () => {
                     icon={<PlusCircleOutlined />}
                     onClick={() => dispatch(increase(item))}
                   />
-                  <span className="font-bold w-6 inline-block text-center">{item.quantity}</span>
+                  <span className="font-bold w-6 inline-block text-center">
+                    {item.quantity}
+                  </span>
                   <Button
                     type="primary"
                     size="small"
@@ -52,6 +57,7 @@ const CartTotals = () => {
                       if (item.quantity === 1) {
                         if (window.confirm("Ürün Silinsin Mi?")) {
                           dispatch(decrease(item));
+                          message.success("Ürün Silindi");
                         }
                       }
                       if (item.quantity > 1) {
@@ -92,7 +98,12 @@ const CartTotals = () => {
           </div>
         </div>
         <div className="py-4 px-2">
-          <Button type="primary" size="large" className="w-full">
+          <Button
+            type="primary"
+            size="large"
+            className="w-full"
+            disabled={cart.cartItems.length === 0}
+          >
             Sipariş Oluştur
           </Button>
           <Button
@@ -101,12 +112,14 @@ const CartTotals = () => {
             className="w-full mt-2 flex items-center justify-center"
             icon={<ClearOutlined />}
             danger
+            disabled={cart.cartItems.length === 0}
             onClick={() => {
-              if(window.confirm("Sepeti Temizlemek İstediğinize Emin Misiniz?")){
-                dispatch(reset())
-                message.success("Sepet Temizlendi")
-              } 
-              
+              if (
+                window.confirm("Sepeti Temizlemek İstediğinize Emin Misiniz?")
+              ) {
+                dispatch(reset());
+                message.success("Sepet Temizlendi");
+              }
             }}
           >
             Temizle
