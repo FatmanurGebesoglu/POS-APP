@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, message } from "antd";
 import {
   ClearOutlined,
   PlusCircleOutlined,
@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deleteCart, increase, decrease } from "../../redux/cartSlice";
+import { deleteCart, increase, decrease, reset } from "../../redux/cartSlice";
 
 const CartTotals = () => {
   const cart = useSelector((state) => state.cart);
@@ -101,6 +101,13 @@ const CartTotals = () => {
             className="w-full mt-2 flex items-center justify-center"
             icon={<ClearOutlined />}
             danger
+            onClick={() => {
+              if(window.confirm("Sepeti Temizlemek İstediğinize Emin Misiniz?")){
+                dispatch(reset())
+                message.success("Sepet Temizlendi")
+              } 
+              
+            }}
           >
             Temizle
           </Button>
