@@ -1,4 +1,4 @@
-import { Modal, Button } from "antd";
+import { Button, Modal } from "antd";
 
 const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
   return (
@@ -17,19 +17,19 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
             </div>
             <div className="bill-details">
               <div className="grid sm:grid-cols-4 grid-cols-3 gap-12">
-                <div className="text-md text-slate-500 sm:block hidden">
+                <div className="text-md text-slate-500">
                   <p className="font-bold text-slate-700">Fatura Detayı:</p>
-                  <p>Karabük</p>
-                  <p> Kılavuzlar Mahallesi</p>
-                  <p> Demirçelik Kampüsü </p>
-                  <p> Mühendislik Fakültesi</p>
+                  <p>Unwrapped</p>
+                  <p> Fake Street 123</p>
+                  <p> San Javier </p>
+                  <p> CA 1234</p>
                 </div>
                 <div className="text-md text-slate-500">
                   <p className="font-bold text-slate-700">Fatura:</p>
-                  The Logo Company
-                  <p> Karabük Teknokent Binası</p>
-                  <p> Karabük </p>
-                  <p> 78100</p>
+                  The Boring Company
+                  <p> Tesla Street 007</p>
+                  <p> Frisco </p>
+                  <p> CA 0000</p>
                 </div>
                 <div className="text-md text-slate-500">
                   <div>
@@ -43,14 +43,14 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                     <p>{customer?.createdAt.substring(0, 10)}</p>
                   </div>
                 </div>
-                <div className="text-md text-slate-500">
+                <div className="text-md text-slate-500 sm:block hidden">
                   <div>
                     <p className="font-bold text-slate-700">Şartlar:</p>
-                    <p>15 gün</p>
+                    <p>10 gün</p>
                   </div>
                   <div>
                     <p className="font-bold text-slate-700 mt-2">Vade:</p>
-                    <p>2024-06-09</p>
+                    <p>2023-11-21</p>
                   </div>
                 </div>
               </div>
@@ -101,7 +101,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {customer?.cartItems.map((item) => (
+                {customer?.cartItems.map((item) => (
                     <tr className="border-b border-slate-200">
                       <td className="py-4 sm:table-cell hidden">
                         <img
@@ -157,9 +157,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       <p className="font-normal text-slate-700">Ara Toplam</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
-                      <span className="font-normal text-slate-700">
-                        {customer?.subTotal}₺
-                      </span>
+                      <span className="font-normal text-slate-700">{customer?.subTotal}₺</span>
                     </th>
                   </tr>
                   <tr>
@@ -178,9 +176,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       <p className="font-normal text-slate-700">KDV</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
-                      <span className="font-normal text-red-600">
-                        +{customer?.tax}₺
-                      </span>
+                      <span className="font-normal text-red-600">+{customer?.tax}₺</span>
                     </th>
                   </tr>
                   <tr>
@@ -201,9 +197,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       <p className="font-normal text-slate-700">Genel Toplam</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
-                      <span className="font-normal text-slate-700">
-                        {customer?.totalAmount}₺
-                      </span>
+                      <span className="font-normal text-slate-700">{customer?.totalAmount}₺</span>
                     </th>
                   </tr>
                 </tfoot>
@@ -235,5 +229,4 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
     </Modal>
   );
 };
-
 export default PrintBill;
