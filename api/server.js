@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
 const cors = require("cors");
+const logger= require("morgan")
 const port = 5000;
 
 
@@ -13,6 +14,7 @@ const productRoute = require("./routes/products.js");
 const billRoute = require("./routes/bills.js");
 const authRoute = require("./routes/auth.js");
 const userRoute = require("./routes/users.js");
+const morgan = require("morgan");
 
 
 dotenv.config();
@@ -29,6 +31,7 @@ const connect = async () => {
 //middlewares
 app.use(express.json());
 app.use(cors());
+app.use(logger("dev"));
 
 
 app.use("/api/categories", categoryRoute);
