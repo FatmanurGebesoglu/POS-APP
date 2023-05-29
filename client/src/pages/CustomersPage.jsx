@@ -1,36 +1,47 @@
 import { Table } from "antd";
 import Header from "../components/Header/Header.jsx";
+import { useState } from "react";
+import { useEffect } from "react";
+
 
 const CustomersPage = () => {
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+
+
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    const getBills = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/bills/get-all");
+        const data = await res.json();
+        setCustomers(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getBills();
+  }, []);
+
+  
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Müşteri Adı",
+      dataIndex: "customerName",
+      key: "customerName",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Telefon Numarası",
+      dataIndex: "customerPhoneNumber",
+      key: "customerPhoneNumber",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "İşlem Tarihi",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (text) => {
+        return <span>{text.substring(0, 10)}</span>;
+      }
     },
   ];
 
@@ -41,10 +52,14 @@ const CustomersPage = () => {
       <h1 className="text-4xl font-bold text-center mb-4">Müşterilerim</h1>
       <div className="px-6">
         <Table
-          dataSource={dataSource}
+          dataSource={customers}
           columns={columns}
           bordered
           pagination={false}
+          scroll={{
+            x:1000,
+            y:300
+          }}
         />
       </div>
     </>
