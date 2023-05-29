@@ -144,13 +144,13 @@ const CartPage = () => {
       title: "Ürün Adı",
       dataIndex: "title",
       key: "title",
-      ...getColumnSearchProps("title"),
+      ...getColumnSearchProps("title")
     },
     {
       title: "Kategori",
       dataIndex: "category",
       key: "category",
-      ...getColumnSearchProps("category"),
+      ...getColumnSearchProps("category")
     },
     {
       title: "Ürün Fiyatı",
