@@ -172,6 +172,7 @@ const CustomerPage = () => {
             x: 1000,
             y: 300,
           }}
+          rowKey="_id"
         />
       </div>
     </>

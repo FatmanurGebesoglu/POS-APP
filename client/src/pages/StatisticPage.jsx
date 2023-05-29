@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header/Header.jsx";
 import StatisticCard from "../components/Statistic/StatisticCard.jsx";
 import { Area, Pie } from "@ant-design/plots";
-
 const StatisticPage = () => {
   const [data, setData] = useState([]);
   const [products, setProducts] = useState([]);
+  const user =JSON.parse( localStorage.getItem("posUser"))
+
 
   useEffect(() => {
     asyncFetch();
   }, []);
-
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -21,10 +21,8 @@ const StatisticPage = () => {
         console.log(error);
       }
     };
-
     getProducts();
   }, []);
-
   const asyncFetch = () => {
     fetch("http://localhost:5000/api/bills/get-all")
       .then((response) => response.json())
@@ -33,7 +31,6 @@ const StatisticPage = () => {
         console.log("fetch data failed", error);
       });
   };
-
   const config = {
     data,
     xField: "customerName",
@@ -42,7 +39,6 @@ const StatisticPage = () => {
       range: [0, 1],
     },
   };
-
   const config2 = {
     appendPadding: 10,
     data,
@@ -79,12 +75,10 @@ const StatisticPage = () => {
       },
     },
   };
-
   const totalAmount = () => {
     const amount = data.reduce((total, item) => item.totalAmount + total, 0);
     return `${amount.toFixed(2)}₺`;
   };
-
   return (
     <>
       <Header />
@@ -93,7 +87,7 @@ const StatisticPage = () => {
         <div className="statistic-section">
           <h2 className="text-lg">
             Hoş geldin{" "}
-            <span className="text-green-700 font-bold text-xl">admin</span>.
+            <span className="text-green-700 font-bold text-xl">{user.username}</span>.
           </h2>
           <div className="statistic-cards grid xl:grid-cols-4 md:grid-cols-2 my-10 md:gap-10 gap-4">
             <StatisticCard
@@ -118,10 +112,10 @@ const StatisticPage = () => {
             />
           </div>
           <div className="flex justify-between gap-10 lg:flex-row flex-col items-center">
-            <div className="lg:w-1/2 lg:h-full h-72">
+            <div className="lg:w-1/2 lg:h-80 h8h-80">
               <Area {...config} />
             </div>
-            <div className="lg:w-1/2 lg:h-full h-72">
+            <div className="lg:w-1/2 lg:h-80 h-72">
               <Pie {...config2} />
             </div>
           </div>
