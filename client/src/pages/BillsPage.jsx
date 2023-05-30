@@ -1,4 +1,4 @@
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Spin, Table } from "antd";
 import { useEffect, useRef, useState } from "react";
 import PrintBill from "../components/Bills/PrintBill.jsx";
 import Header from "../components/Header/Header.jsx";
@@ -7,24 +7,20 @@ import Highlighter from "react-highlight-words";
 
 const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [billItems, setBillItems] = useState([]);
+  const [billItems, setBillItems] = useState();
   const [customer, setCustomer] = useState();
-
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
-
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
-
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
   };
-
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -127,7 +123,6 @@ const BillPage = () => {
         text
       ),
   });
-
   useEffect(() => {
     const getBills = async () => {
       try {
@@ -138,10 +133,8 @@ const BillPage = () => {
         console.log(error);
       }
     };
-
     getBills();
   }, []);
-
   const columns = [
     {
       title: "Müşteri Adı",
@@ -198,24 +191,30 @@ const BillPage = () => {
       },
     },
   ];
-
   return (
     <>
       <Header />
-      <div className="px-6">
-        <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
-        <Table
-          dataSource={billItems}
-          columns={columns}
-          bordered
-          pagination={false}
-          scroll={{
-            x: 1000,
-            y: 300,
-          }}
-          rowKey="_id"
+      <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
+      {billItems ? (
+        <div className="px-6">
+          <Table
+            dataSource={billItems}
+            columns={columns}
+            bordered
+            pagination={false}
+            scroll={{
+              x: 1000,
+              y: 300,
+            }}
+            rowKey="_id"
+          />
+        </div>
+      ) : (
+        <Spin
+          size="large"
+          className="absolute top-1/2 h-screen w-screen flex justify-center"
         />
-      </div>
+      )}
       <PrintBill
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
